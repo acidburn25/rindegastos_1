@@ -19,21 +19,20 @@ let ConversionsController = class ConversionsController {
     constructor(exchangeService) {
         this.exchangeService = exchangeService;
     }
-    postConvertedAmount(from, toConvert, amount, dateRequest, payload) {
-        return this.exchangeService.findConvert(payload.amount, payload.dateRequest, payload.toConvert, payload.from);
+    getConvertedAmount(from, toConvert, amount, dateRequest) {
+        return this.exchangeService.findConvert(amount, dateRequest, toConvert, from);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('from')),
     __param(1, (0, common_1.Query)('to')),
     __param(2, (0, common_1.Query)('amount')),
     __param(3, (0, common_1.Query)('dateRequest')),
-    __param(4, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number, String, Object]),
+    __metadata("design:paramtypes", [String, String, Number, String]),
     __metadata("design:returntype", void 0)
-], ConversionsController.prototype, "postConvertedAmount", null);
+], ConversionsController.prototype, "getConvertedAmount", null);
 ConversionsController = __decorate([
     (0, common_1.Controller)('/conversions'),
     __metadata("design:paramtypes", [exchange_service_1.ExchangeService])

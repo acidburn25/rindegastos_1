@@ -12,16 +12,13 @@ const axios_1 = require("axios");
 const userId = '7b79dbaa3e0341aebe09bd68be622184';
 let valueConverted;
 let ExchangeService = class ExchangeService {
-    findConvert(amount, dateRequest, toConvert, from) {
-        axios_1.default
-            .get('https://openexchangerates.org/api/historical/' +
+    async findConvert(amount, dateRequest, toConvert, from) {
+        const response = await axios_1.default.get('https://openexchangerates.org/api/historical/' +
             dateRequest +
             '.json?app_id=' +
-            userId)
-            .then((response) => {
-            valueConverted = response.data['rates'][toConvert] * amount;
-        });
-        return valueConverted;
+            userId);
+        valueConverted = response.data['rates'][toConvert] * amount;
+        return valueConverted.toFixed(2);
     }
 };
 ExchangeService = __decorate([
